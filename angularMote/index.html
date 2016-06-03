@@ -1,0 +1,66 @@
+<html lang="en" >
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
+  <link rel="stylesheet" type="text/css" href="angular.css">
+</head>
+<body ng-app="BlankApp" ng-cloak>
+  <div ng-controller="MyController">
+    <div id="btnLeft">
+      <md-button class="md-raised" ng-click="Previous()">Previous</md-button>
+    </div>
+    <div id="btnPlayPause">
+      <md-button class="md-raised" ng-click="PlayPause()">Play</md-button>
+    </div>
+    <div id="btnRight">
+      <md-button class="md-raised" ng-click="Next()">Next</md-button>
+    </div>
+    <div ng-controller="MyController">
+      Track: <span ng-bind="track"></span>
+    </div>
+  </div>
+
+  <!-- Angular Material requires Angular.js Libraries -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
+
+  <!-- Angular Material Library -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
+  
+  <!-- Your application bootstrap  -->
+  <script type="text/javascript">
+        var app = angular.module('BlankApp', ['ngMaterial'])
+        app.controller('MyController', function ($scope, $window) 
+        {
+            $scope.Previous = function () {
+              var xmlHttp = new XMLHttpRequest();
+              xmlHttp.open( "GET", "http://192.168.0.10:2752/api/command/previous", false ); // false for synchronous request
+              xmlHttp.send( null );
+              $scope.track = xmlHttp.responseText;
+            }
+
+            $scope.Next = function () {
+                var xmlHttp = new XMLHttpRequest();
+                xmlHttp.open( "GET", "http://192.168.0.10:2752/api/command/next", false ); // false for synchronous request
+                xmlHttp.send( null );
+                $scope.track = xmlHttp.responseText;
+            }
+
+            $scope.PlayPause = function () {
+                var xmlHttp = new XMLHttpRequest();
+                xmlHttp.open( "GET", "http://192.168.0.10:2752/api/command/playpause", false ); // false for synchronous request
+                xmlHttp.send( null );
+            }
+        });
+  </script>
+  
+</body>
+</html>
+
+<!--
+Copyright 2016 Google Inc. All Rights Reserved. 
+Use of this source code is governed by an MIT-style license that can be in foundin the LICENSE file at http://material.angularjs.org/license.
+-->

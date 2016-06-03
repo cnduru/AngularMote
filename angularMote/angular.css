@@ -1,0 +1,17 @@
+  #btnRight {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+  }
+  
+  #btnLeft {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+  }
+
+  #btnPlayPause {
+    position: fixed;
+    bottom: 0;
+    left: 34%;
+  }
